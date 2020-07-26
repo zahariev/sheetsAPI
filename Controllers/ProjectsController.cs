@@ -9,32 +9,35 @@ namespace sheetsApi.Controllers
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Mvc;
     using sheetsApi.Data;
+    using Microsoft.EntityFrameworkCore;
 
     [Route("api/[controller]")]
     [ApiController]
     public class ProjectsController : ControllerBase
     {
-        private readonly DataContext context;
+        private readonly DataContext _context;
         public ProjectsController(DataContext context)
         {
-            this.context = context;
+            _context = context;
 
         }
+
+
         // GET api/projects
         [HttpGet]
-        public IActionResult GetProjects()
+        public async Task<IActionResult> GetProjects()
         {
 
-            var projects = this.context.Projects.ToList();
+            var projects = await _context.Projects.ToListAsync();
 
             return Ok(projects);
         }
 
         // GET api/projects/5
         [HttpGet("{id}")]
-        public IActionResult GetProject(int id)
+        public async Task<IActionResult> GetProject(int id)
         {
-            var project = this.context.Projects.FirstOrDefault(x => x.Id == id);
+            var project = await _context.Projects.FirstOrDefaultAsync(x => x.Id == id);
             return Ok(project);
         }
 
