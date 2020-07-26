@@ -4,7 +4,7 @@
 /bin/*
 /obj/*
 /Migrations/*
-sheets.db
+sheets.db*
 
 /dist
 /tmp
