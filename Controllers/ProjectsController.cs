@@ -20,7 +20,7 @@ namespace sheetsApi.Controllers
             this.context = context;
 
         }
-        // GET api/values
+        // GET api/projects
         [HttpGet]
         public IActionResult GetProjects()
         {
@@ -30,7 +30,7 @@ namespace sheetsApi.Controllers
             return Ok(projects);
         }
 
-        // GET api/values/5
+        // GET api/projects/5
         [HttpGet("{id}")]
         public IActionResult GetProject(int id)
         {
@@ -38,19 +38,19 @@ namespace sheetsApi.Controllers
             return Ok(project);
         }
 
-        // POST api/values
+        // POST api/projects
         [HttpPost]
         public void Post([FromBody] string value)
         {
         }
 
-        // PUT api/values/5
+        // PUT api/projects/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
         {
         }
 
-        // DELETE api/values/5
+        // DELETE api/projects/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
