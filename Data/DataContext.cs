@@ -11,8 +11,8 @@ namespace sheetsApi.Data
         public DbSet<TimeSheet> TimeSheets { get; set; }
 
 
-        protected override void OnConfiguring(DbContextOptionsBuilder options)
-            => options.UseSqlite("Data Source=sheets.db");
+        // protected override void OnConfiguring(DbContextOptionsBuilder options)
+        //     => options.UseSqlite("Data Source=sheets.db");
     }
 
 
