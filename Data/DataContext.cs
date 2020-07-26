@@ -7,9 +7,12 @@ namespace sheetsApi.Data
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }
 
         public DbSet<Project> Projects { get; set; }
+        public DbSet<Client> Clients { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder options)
-            => options.UseSqlite("Data Source=sheets.db");
+        public DbSet<TimeSheet> TimeSheets { get; set; }
+
+
+
     }
 
 
