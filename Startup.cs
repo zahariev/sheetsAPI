@@ -16,6 +16,9 @@ namespace sheetsApi
     using Microsoft.Extensions.Logging;
     using Microsoft.EntityFrameworkCore;
     using sheetsApi.Data;
+    using Microsoft.AspNetCore.Authentication;
+
+    using Microsoft.AspNetCore.Server.IISIntegration;
 
     public class Startup
     {
@@ -34,6 +37,11 @@ namespace sheetsApi
 
             //   x => x.UseSqlite(Configuration.GetConnectionString("DefaultConnection"))
             services.AddControllers();
+            services.AddCors();
+            services.AddAuthentication(IISDefaults.AuthenticationScheme);
+            // services.AddAuthentication(HttpSysDefaults.AuthenticationScheme);
+
+            //    .AddNegotiate();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,8 +55,8 @@ namespace sheetsApi
             // app.UseHttpsRedirection();
 
             app.UseRouting();
-
-            // app.UseAuthorization();
+            app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
