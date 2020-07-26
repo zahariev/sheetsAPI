@@ -3,6 +3,9 @@
 # compiled output
 /bin/*
 /obj/*
+/Migrations/*
+sheets.db
+
 /dist
 /tmp
 /out-tsc
