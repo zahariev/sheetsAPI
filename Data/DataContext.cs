@@ -9,6 +9,7 @@ namespace sheetsApi.Data
         public DbSet<Project> Projects { get; set; }
         public DbSet<Client> Clients { get; set; }
         public DbSet<TimeSheet> TimeSheets { get; set; }
+        public DbSet<User> Users { get; set; }
 
 
         // protected override void OnConfiguring(DbContextOptionsBuilder options)
