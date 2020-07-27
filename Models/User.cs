@@ -7,6 +7,8 @@ namespace sheetsApi.Models
 
         public byte[] PasswordHash { get; set; }
         public byte[] PasswordSalt { get; set; }
+
+
         /// <summary>
         /// The display name of the Team Member
         /// </summary>
