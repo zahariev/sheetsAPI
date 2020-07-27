@@ -10,7 +10,7 @@ namespace sheetsApi.Models
         /// <summary>
         /// The display name of the Team Member
         /// </summary>
-        public string Name { get; set; }
+        public string Username { get; set; }
 
         /// <summary>
         /// The job position of the Team Member
