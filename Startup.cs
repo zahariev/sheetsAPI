@@ -42,6 +42,8 @@ namespace sheetsApi
             // services.AddAuthentication(HttpSysDefaults.AuthenticationScheme);
 
             //    .AddNegotiate();
+
+            services.AddScoped<IAuthRepository, AuthRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
