@@ -12,7 +12,7 @@ namespace sheetsApi.Controllers
     using sheetsApi.Data;
     using Microsoft.EntityFrameworkCore;
 
-    [Authorize]
+    // [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ProjectsController : ControllerBase
