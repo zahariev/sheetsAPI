@@ -33,7 +33,7 @@ namespace sheetsApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<DataContext>(x => x.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<DataContext>(options => options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
 
             //   x => x.UseSqlite(Configuration.GetConnectionString("DefaultConnection"))
             services.AddControllers();
@@ -43,7 +43,7 @@ namespace sheetsApi
 
             //    .AddNegotiate();
 
-            services.AddScoped<IAuthRepository, AuthRepository>();
+            services.AddTransient<IAuthRepository, AuthRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
