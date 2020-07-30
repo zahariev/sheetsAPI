@@ -12,7 +12,7 @@ namespace sheetsApi.Controllers
     using sheetsApi.Data;
     using Microsoft.EntityFrameworkCore;
 
-    // [Authorize]
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ProjectsController : ControllerBase
@@ -35,6 +35,7 @@ namespace sheetsApi.Controllers
             return Ok(projects);
         }
 
+        [AllowAnonymous]
         // GET api/projects/5
         [HttpGet("{id}")]
         public async Task<IActionResult> GetProject(int id)
