@@ -12,9 +12,10 @@ namespace sheetsApi.Models
         public int ClientId { get; set; }
         public int UserId { get; set; }
 
-        public DateTime StartDateTime { get; set; }
+        public string date { get; set; }
 
-        public DateTime EndDateTime { get; set; }
+        public int StartTime { get; set; }
+        public int EndTime { get; set; }
 
         public string Description { get; set; }
     }
