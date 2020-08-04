@@ -9,6 +9,7 @@ namespace sheetsApi.Models
 
         public int ProjectId { get; set; }
 
+        public int ClientId { get; set; }
         public int UserId { get; set; }
 
         public DateTime StartDateTime { get; set; }
