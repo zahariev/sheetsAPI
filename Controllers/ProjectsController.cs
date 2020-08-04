@@ -1,8 +1,7 @@
-using System.Security.Cryptography.X509Certificates;
-
 
 namespace sheetsApi.Controllers
 {
+    using System.Security.Cryptography.X509Certificates;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -10,6 +9,7 @@ namespace sheetsApi.Controllers
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Authorization;
     using sheetsApi.Data;
+    using sheetsApi.Models;
     using Microsoft.EntityFrameworkCore;
 
     [Authorize]
@@ -35,7 +35,7 @@ namespace sheetsApi.Controllers
             return Ok(projects);
         }
 
-        [AllowAnonymous]
+        // [AllowAnonymous]
         // GET api/projects/5
         [HttpGet("{id}")]
         public async Task<IActionResult> GetProject(int id)
@@ -46,20 +46,42 @@ namespace sheetsApi.Controllers
 
         // POST api/projects
         [HttpPost]
-        public void Post([FromBody] string value)
+        public IActionResult Post()
         {
+            var project = new Project()
+            {
+                Name = "new project"
+            };
+            _context.Projects.Add(project);
+            _context.SaveChanges();
+
+            if (project.Id > 0) return Ok(project);
+            // return 0;
+            else return BadRequest("Insert failed");
+
         }
 
-        // PUT api/projects/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
 
+        // PUT api/projects
+        [HttpPut()]
+        public IActionResult Put([FromBody] Project project)
+        {
+            _context.Projects.Update(project);
+            _context.SaveChanges();
+
+            return Ok(project);
+        }
         // DELETE api/projects/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            var rec = new Project()
+            {
+                Id = id
+            };
+
+            _context.Projects.Remove(rec);
+            _context.SaveChanges();
         }
     }
 }
