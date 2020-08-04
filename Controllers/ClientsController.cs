@@ -1,7 +1,8 @@
+using System.Security.Cryptography.X509Certificates;
+
 
 namespace sheetsApi.Controllers
 {
-    using System.Security.Cryptography.X509Certificates;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -15,73 +16,74 @@ namespace sheetsApi.Controllers
     [Authorize]
     [Route("api/[controller]")]
     [ApiController]
-    public class ProjectsController : ControllerBase
+    public class ClientsController : ControllerBase
     {
         private readonly DataContext _context;
-        public ProjectsController(DataContext context)
+        public ClientsController(DataContext context)
         {
             _context = context;
 
         }
 
-
-        // GET api/projects
+        // [AllowAnonymous]
+        // GET api/clients
         [HttpGet]
-        public async Task<IActionResult> GetProjects()
+        public async Task<IActionResult> GetClients()
         {
 
-            var projects = await _context.Projects.ToListAsync();
+            var clients = await _context.Clients.ToListAsync();
 
-            return Ok(projects);
+            return Ok(clients);
         }
 
         // [AllowAnonymous]
-        // GET api/projects/5
+        // GET api/clients/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetProject(int id)
+        public async Task<IActionResult> GetClient(int id)
         {
-            var project = await _context.Projects.FirstOrDefaultAsync(x => x.Id == id);
+            var project = await _context.Clients.FirstOrDefaultAsync(x => x.Id == id);
             return Ok(project);
         }
 
-        // POST api/projects
+        // POST api/clients
         [HttpPost]
         public IActionResult Post()
         {
-            var project = new Project()
+            var client = new Client()
             {
-                Name = "new project"
+                Name = "new client"
             };
-            _context.Projects.Add(project);
+            _context.Clients.Add(client);
             _context.SaveChanges();
 
-            if (project.Id > 0) return Ok(project);
+            if (client.Id > 0) return Ok(client);
             // return 0;
             else return BadRequest("Insert failed");
 
         }
 
 
-        // PUT api/projects
+        // PUT api/clients
         [HttpPut()]
-        public IActionResult Put([FromBody] Project project)
+        public IActionResult Put([FromBody] Client client)
         {
-            _context.Projects.Update(project);
+            _context.Clients.Update(client);
             _context.SaveChanges();
 
-            return Ok(project);
+            return Ok(client);
         }
-        // DELETE api/projects/5
+        // DELETE api/clients/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            var rec = new Project()
+            var rec = new Client()
             {
                 Id = id
             };
 
-            _context.Projects.Remove(rec);
+            _context.Clients.Remove(rec);
             _context.SaveChanges();
+
         }
     }
 }

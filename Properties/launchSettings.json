@@ -10,6 +10,8 @@
   },
   "profiles": {
     "IIS Express": {
+      "windowsAuthentication": true,
+      "anonymousAuthentication": false,
       "commandName": "IISExpress",
       "launchBrowser": true,
       "launchUrl": "weatherforecast",

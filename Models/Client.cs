@@ -1,10 +1,11 @@
 namespace sheetsApi.Models
 {
-    public class Project
+    using System.Collections.Generic;
+
+    public class Client
     {
         public int Id { get; set; }
         public string Name { get; set; }
 
-        public int ClientId { get; set; }
     }
 }
