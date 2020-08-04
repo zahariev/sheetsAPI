@@ -10,9 +10,10 @@ namespace sheetsApi.Controllers
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Authorization;
     using sheetsApi.Data;
+    using sheetsApi.Models;
     using Microsoft.EntityFrameworkCore;
 
-    // [Authorize]
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ClientsController : ControllerBase
@@ -24,7 +25,7 @@ namespace sheetsApi.Controllers
 
         }
 
-        [AllowAnonymous]
+        // [AllowAnonymous]
         // GET api/clients
         [HttpGet]
         public async Task<IActionResult> GetClients()
@@ -35,7 +36,7 @@ namespace sheetsApi.Controllers
             return Ok(clients);
         }
 
-        [AllowAnonymous]
+        // [AllowAnonymous]
         // GET api/clients/5
         [HttpGet("{id}")]
         public async Task<IActionResult> GetClient(int id)
@@ -46,21 +47,43 @@ namespace sheetsApi.Controllers
 
         // POST api/clients
         [HttpPost]
-        public void Post([FromBody] string value)
+        public IActionResult Post()
         {
+            var client = new Client()
+            {
+                Name = "new client"
+            };
+            _context.Clients.Add(client);
+            _context.SaveChanges();
+
+            if (client.Id > 0) return Ok(client);
+            // return 0;
+            else return BadRequest("Insert failed");
 
         }
 
-        // PUT api/clients/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
 
+        // PUT api/clients
+        [HttpPut()]
+        public IActionResult Put([FromBody] Client client)
+        {
+            _context.Clients.Update(client);
+            _context.SaveChanges();
+
+            return Ok(client);
+        }
         // DELETE api/clients/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            var rec = new Client()
+            {
+                Id = id
+            };
+
+            _context.Clients.Remove(rec);
+            _context.SaveChanges();
+
         }
     }
 }
